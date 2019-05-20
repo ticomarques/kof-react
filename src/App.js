@@ -28,9 +28,54 @@ export default class App extends Component {
 
   handleAttack = () => {
     let damage = Math.floor((Math.random() * 5) + 1)
-    var valor = this.state.p2.energy - damage;
-    this.setState({p2: { name: 'Terry',
-    image: '../images/Terry.gif', energy: valor, special: 0}})
+    
+
+    if (this.state.turn){
+      var changeEnergy = this.state.p2.energy - damage;
+      this.setState(
+        { p2: 
+          { name: 'Terry',
+            image: '../images/Terry.gif', 
+            energy: changeEnergy, 
+            special: this.state.p2.special
+          }
+        }
+      )
+      this.setState(
+        { turn: false,
+          p1: 
+          { name: 'Kyo',
+            image: '../images/Kyo.gif', 
+            energy: this.state.p1.energy, 
+            special: this.state.p1.special + (damage * 3)
+          }
+        }
+      )
+    } else {
+      var valorp2 = this.state.p1.energy - damage;
+      this.setState(
+        { p1: 
+          { name: 'Terry',
+            image: '../images/Terry.gif', 
+            energy: valorp2, 
+            special: this.state.p1.special
+          }
+        }
+      )
+      this.setState(
+        { turn: true,
+          p2: 
+          { name: 'Kyo',
+            image: '../images/Kyo.gif', 
+            energy: this.state.p2.energy, 
+            special: this.state.p2.special + (damage * 3)
+          }
+        }
+      )
+    }
+    
+
+    
   }
 
   handleSpecial = () => {
@@ -53,7 +98,13 @@ export default class App extends Component {
 
         <Person info={this.state.p2} />
 
-        <Controls handleAttack={this.handleAttack} handleSpecial={this.handleSpecial} handleGiveUp={this.handleGiveUp} />
+        {
+          this.state.turn ? 
+            <Controls handleAttack={this.handleAttack} handleSpecial={this.handleSpecial} handleGiveUp={this.handleGiveUp} player="player1"/> 
+            : 
+            <Controls handleAttack={this.handleAttack} handleSpecial={this.handleSpecial} handleGiveUp={this.handleGiveUp} />
+        }
+        
       </WrapperApp>
     )
   }

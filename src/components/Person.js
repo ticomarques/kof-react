@@ -54,6 +54,7 @@ const WrapperPerson1 = styled.div`
     .specialBarP1 {
         width:100px;
         height:15px;
+        margin-top: 5px;
         background: green;
         color: white;
     }
@@ -62,7 +63,7 @@ const WrapperPerson1 = styled.div`
 const WrapperPerson2 = styled.div`
     position:absolute;
     top: 240px;
-    right: 20px;
+    right: 0px;
     .energyBarP2 {
         width:200px;
         height:20px;
@@ -72,6 +73,7 @@ const WrapperPerson2 = styled.div`
     .specialBarP2 {
         width:100px;
         height:15px;
+        margin-top: 5px;
         background: green;
         color: white;
     }
