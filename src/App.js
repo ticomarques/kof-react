@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Stage from './components/Stage'
-import Person from './components/Person'
+import bg from './images/brazil.jpg'
+
+import BarP1 from './components/BarP1'
+import BarP2 from './components/BarP2'
+
+import Person1 from './components/Person1'
+import Person2 from './components/Person2'
 import Controls from './components/Controls'
 
 export default class App extends Component {
@@ -9,12 +14,14 @@ export default class App extends Component {
   state = {
       turn: true,
       p1: {
+          css: false,
           name: 'Kyo',
           image: '../images/Kyo.gif',
           energy: 100,
           special: 0
       },
       p2: {
+          css: false,
           name: 'Terry',
           image: '../images/Terry.gif',
           energy: 100,
@@ -29,12 +36,13 @@ export default class App extends Component {
   handleAttack = () => {
     let damage = Math.floor((Math.random() * 5) + 1)
     
-
     if (this.state.turn){
       var changeEnergy = this.state.p2.energy - damage;
       this.setState(
         { p2: 
-          { name: 'Terry',
+          { 
+            css: false,
+            name: 'Terry',
             image: '../images/Terry.gif', 
             energy: changeEnergy, 
             special: this.state.p2.special
@@ -44,18 +52,35 @@ export default class App extends Component {
       this.setState(
         { turn: false,
           p1: 
-          { name: 'Kyo',
+          { 
+            css: true,
+            name: 'Kyo',
             image: '../images/Kyo.gif', 
             energy: this.state.p1.energy, 
             special: this.state.p1.special + (damage * 3)
           }
         }
       )
+      setTimeout(() => { 
+        this.setState(
+          { turn: false,
+            p1: 
+            { 
+              css: false,
+              name: 'Kyo',
+              image: '../images/Kyo-attack1.gif', 
+              energy: this.state.p1.energy, 
+              special: this.state.p1.special + (damage * 3)
+            }
+          }
+        )
+      }, 1000);
+
     } else {
       var valorp2 = this.state.p1.energy - damage;
       this.setState(
         { p1: 
-          { name: 'Terry',
+          { name: 'Kyo',
             image: '../images/Terry.gif', 
             energy: valorp2, 
             special: this.state.p1.special
@@ -65,7 +90,7 @@ export default class App extends Component {
       this.setState(
         { turn: true,
           p2: 
-          { name: 'Kyo',
+          { name: 'Terry',
             image: '../images/Kyo.gif', 
             energy: this.state.p2.energy, 
             special: this.state.p2.special + (damage * 3)
@@ -73,9 +98,6 @@ export default class App extends Component {
         }
       )
     }
-    
-
-    
   }
 
   handleSpecial = () => {
@@ -90,26 +112,56 @@ export default class App extends Component {
   render() {
     return (
       <WrapperApp>
-        <h1>KOF RPG</h1>
-
-        <Stage />
+        <section className="topBar">
+          <BarP1 info={this.state.p1} />
+          <BarP2 info={this.state.p2} />
+        </section>
         
-        <Person info={this.state.p1} player="player1" />
-
-        <Person info={this.state.p2} />
-
-        {
-          this.state.turn ? 
-            <Controls handleAttack={this.handleAttack} handleSpecial={this.handleSpecial} handleGiveUp={this.handleGiveUp} player="player1"/> 
-            : 
-            <Controls handleAttack={this.handleAttack} handleSpecial={this.handleSpecial} handleGiveUp={this.handleGiveUp} />
-        }
+        <section className={this.state.p1.css ? 'arena p1Attack' : 'arena nothing'}>
+          <Person1 info={this.state.p1} />
+          <Person2 info={this.state.p2} />
+        </section>
         
+        <section className="scontrols">
+          {
+            this.state.turn ? 
+              <Controls 
+                handleAttack={this.handleAttack} 
+                handleSpecial={this.handleSpecial} 
+                handleGiveUp={this.handleGiveUp} 
+                player="player1"
+              /> 
+              : 
+              <Controls 
+                handleAttack={this.handleAttack} 
+                handleSpecial={this.handleSpecial} 
+                handleGiveUp={this.handleGiveUp} 
+              />
+          }
+        </section>
       </WrapperApp>
     )
   }
 }
 
 const WrapperApp = styled.div`
-  position: relative;
+  background: url(${bg}) no-repeat top center; 
+  height:466px;
+
+  .topBar{
+    height:100px;
+    padding:15px 10px 0;
+  }
+  .arena{
+    height: 350px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .p1Attack {
+    justify-content: flex-end;
+  }
+
+  @keyframes example {
+  100% {background-color:red; left:0px; top:0px;}
+}
 `
