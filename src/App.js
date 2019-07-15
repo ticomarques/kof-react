@@ -16,14 +16,16 @@ export default class App extends Component {
       p1: {
           css: false,
           name: 'Kyo',
-          image: '../images/Kyo.gif',
+          attack: false,
+          hurt:false,
           energy: 100,
           special: 0
       },
       p2: {
           css: false,
           name: 'Terry',
-          image: '../images/Terry.gif',
+          attack: false,
+          hurt:false,
           energy: 100,
           special: 0
       }
@@ -37,30 +39,35 @@ export default class App extends Component {
     let damage = Math.floor((Math.random() * 5) + 1)
     
     if (this.state.turn){
+
+      //calcula dano e subtrai do personagem
       var changeEnergy = this.state.p2.energy - damage;
       this.setState(
         { p2: 
           { 
             css: false,
             name: 'Terry',
-            image: '../images/Terry.gif', 
             energy: changeEnergy, 
             special: this.state.p2.special
           }
         }
       )
+
+      //calcula special e adiciona no special
       this.setState(
         { turn: false,
           p1: 
           { 
             css: true,
             name: 'Kyo',
-            image: '../images/Kyo.gif', 
+            attack: true,
             energy: this.state.p1.energy, 
             special: this.state.p1.special + (damage * 3)
           }
         }
       )
+
+      //faz o flip de imagem de ataque p1
       setTimeout(() => { 
         this.setState(
           { turn: false,
@@ -68,35 +75,73 @@ export default class App extends Component {
             { 
               css: false,
               name: 'Kyo',
-              image: '../images/Kyo-attack1.gif', 
+              attack: false,
+              hurt: false,
               energy: this.state.p1.energy, 
               special: this.state.p1.special + (damage * 3)
+            },
+            p2: 
+            { 
+              css: false,
+              name: 'Terry',
+              attack: false,
+              hurt: false,
+              energy: this.state.p2.energy, 
+              special: this.state.p2.special
             }
           }
         )
       }, 1000);
 
     } else {
+      //calcula dano e subtrai do personagem
       var valorp2 = this.state.p1.energy - damage;
       this.setState(
         { p1: 
           { name: 'Kyo',
-            image: '../images/Terry.gif', 
             energy: valorp2, 
             special: this.state.p1.special
           }
         }
       )
+
+      //calcula special e adiciona no special
       this.setState(
         { turn: true,
           p2: 
           { name: 'Terry',
-            image: '../images/Kyo.gif', 
+            attack: true,
             energy: this.state.p2.energy, 
             special: this.state.p2.special + (damage * 3)
           }
         }
       )
+      
+      //faz o flip de imagem de ataque p2
+      setTimeout(() => { 
+        this.setState(
+          { turn: false,
+            p1: 
+            { 
+              css: false,
+              name: 'Kyo',
+              attack: false,
+              energy: this.state.p2.energy, 
+              special: this.state.p2.special + (damage * 3)
+            },
+            p2: 
+            { 
+              css: false,
+              name: 'Terry',
+              attack: false,
+              hurt: false,
+              energy: this.state.p2.energy, 
+              special: this.state.p2.special
+            }
+
+          }
+        )
+      }, 650);
     }
   }
 
@@ -117,7 +162,7 @@ export default class App extends Component {
           <BarP2 info={this.state.p2} />
         </section>
         
-        <section className={this.state.p1.css ? 'arena p1Attack' : 'arena nothing'}>
+        <section className={this.state.p1.css ? 'arena p1Attack' : 'arena'}>
           <Person1 info={this.state.p1} />
           <Person2 info={this.state.p2} />
         </section>
@@ -159,6 +204,9 @@ const WrapperApp = styled.div`
   }
   .p1Attack {
     justify-content: flex-end;
+  }
+  .p2Attack {
+    justify-content: flex-start;
   }
 
   @keyframes example {

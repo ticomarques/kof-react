@@ -1,12 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 import p2 from '../images/Terry.gif'
+import p2Attack from '../images/Terry-attack.gif'
+import p2Hurt from '../images/Terry-hurt.gif'
 
 export default function Person(props) {
+
+  const attack = props.info.attack;
+  const hurt = props.info.hurt;
+  let vai;
+
+  if (!attack && !hurt) {
+    vai = <img src={p2} alt="Player 2" />;
+  } else if (attack){
+    vai = <img src={p2Attack} alt="Player 2" />;
+  } else {
+    vai = <img src={p2Hurt} alt="Player 2" />;
+  }
+    
   return (
     <WrapperPerson2>
         <div className="imgP2">
-            <img src={p2} alt="Player 2" />
+            {vai}
         </div>
     </WrapperPerson2>
   )
@@ -14,7 +29,7 @@ export default function Person(props) {
 
 const WrapperPerson2 = styled.div`
     float:right;
-    margin-top:100px;
+    margin-top:90px;
     .energyBarP2 {
         width:200px;
         height:20px;
