@@ -14,7 +14,7 @@ export default function Person(props) {
     vai = <img src={p2} alt="Player 2" />;
   } else if (attack){
     vai = <img src={p2Attack} alt="Player 2" />;
-  } else {
+  } else if (hurt){
     vai = <img src={p2Hurt} alt="Player 2" />;
   }
     

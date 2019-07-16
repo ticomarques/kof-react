@@ -13,6 +13,7 @@ export default class App extends Component {
 
   state = {
       turn: true,
+      action: null,
       p1: {
           css: false,
           name: 'Kyo',
@@ -56,6 +57,7 @@ export default class App extends Component {
       //calcula special e adiciona no special
       this.setState(
         { turn: false,
+          action: "p1Attack",
           p1: 
           { 
             css: true,
@@ -71,6 +73,7 @@ export default class App extends Component {
       setTimeout(() => { 
         this.setState(
           { turn: false,
+            action: null,
             p1: 
             { 
               css: false,
@@ -108,6 +111,7 @@ export default class App extends Component {
       //calcula special e adiciona no special
       this.setState(
         { turn: true,
+          action: "p2Attack",
           p2: 
           { name: 'Terry',
             attack: true,
@@ -120,7 +124,8 @@ export default class App extends Component {
       //faz o flip de imagem de ataque p2
       setTimeout(() => { 
         this.setState(
-          { turn: false,
+          { turn: true,
+            action: null,
             p1: 
             { 
               css: false,
@@ -155,6 +160,18 @@ export default class App extends Component {
 
 
   render() {
+
+    let action = this.state.action;
+    let vai;
+    
+    if (action === "p1Attack"){
+      vai = "arena p1Attack";
+    } else if (action === "p2Attack"){
+      vai = "arena p2Attack";
+    } else {
+      vai = "arena";
+    }
+
     return (
       <WrapperApp>
         <section className="topBar">
@@ -162,7 +179,7 @@ export default class App extends Component {
           <BarP2 info={this.state.p2} />
         </section>
         
-        <section className={this.state.p1.css ? 'arena p1Attack' : 'arena'}>
+        <section className={vai}>
           <Person1 info={this.state.p1} />
           <Person2 info={this.state.p2} />
         </section>
