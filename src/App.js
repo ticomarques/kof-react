@@ -120,7 +120,7 @@ export default class App extends Component {
           }
         }
       )
-      
+       
       //faz o flip de imagem de ataque p2
       setTimeout(() => { 
         this.setState(
