@@ -36,51 +36,29 @@ export default class App extends Component {
     console.log('Changed the player')
   }
 
+
+
+
+
   handleAttack = () => {
+    
+    //calcula dano
     let damage = Math.floor((Math.random() * 5) + 1)
     
     if (this.state.turn){
 
-      //calcula dano e subtrai do personagem
-      var changeEnergy = this.state.p2.energy - damage;
-      this.setState(
-        { p2: 
-          { 
-            css: false,
-            name: 'Terry',
-            energy: changeEnergy, 
-            special: this.state.p2.special
-          }
-        }
-      )
-
-      //calcula special e adiciona no special
-      this.setState(
-        { turn: false,
-          action: "p1Attack",
-          p1: 
-          { 
-            css: true,
-            name: 'Kyo',
-            attack: true,
-            energy: this.state.p1.energy, 
-            special: this.state.p1.special + (damage * 3)
-          }
-        }
-      )
-
-      //faz o flip de imagem de ataque p1
-      setTimeout(() => { 
+        // Calcula o dano no P2 e adiciona o special
+        var danoP2 = this.state.p2.energy - damage;
         this.setState(
           { turn: false,
-            action: null,
+            action: "p1Attack",
             p1: 
             { 
-              css: false,
+              css: true,
               name: 'Kyo',
-              attack: false,
+              attack: true,
               hurt: false,
-              energy: this.state.p1.energy, 
+              energy: this.state.p2.energy,
               special: this.state.p1.special + (damage * 3)
             },
             p2: 
@@ -88,39 +66,75 @@ export default class App extends Component {
               css: false,
               name: 'Terry',
               attack: false,
-              hurt: false,
-              energy: this.state.p2.energy, 
+              hurt: true,
+              energy: danoP2, 
               special: this.state.p2.special
             }
           }
         )
-      }, 1000);
+        // ****** FIM Calcula o dano no P2 e adiciona o special
+
+        // 3 faz o flip de imagem de ataque p1
+        setTimeout(() => { 
+          this.setState(
+            { turn: false,
+              action: null,
+              p1: 
+              { 
+                css: false,
+                name: 'Kyo',
+                attack: false,
+                hurt: false,
+                energy: this.state.p1.energy, 
+                special: this.state.p1.special
+              },
+              p2: 
+              { 
+                css: false,
+                name: 'Terry',
+                attack: false,
+                hurt: false,
+                energy: this.state.p2.energy, 
+                special: this.state.p2.special
+              }
+            }
+          )
+        }, 600);
+        // **** FIM FAZ FLIP ATAQUE
+
 
     } else {
-      //calcula dano e subtrai do personagem
-      var valorp2 = this.state.p1.energy - damage;
-      this.setState(
-        { p1: 
-          { name: 'Kyo',
-            energy: valorp2, 
-            special: this.state.p1.special
-          }
-        }
-      )
 
-      //calcula special e adiciona no special
+
+      //calcula dano
+      var danoP1 = this.state.p1.energy - damage;
+      // Calcula o dano no P1 e adiciona o special
       this.setState(
-        { turn: true,
+        { 
+          turn: true,
           action: "p2Attack",
+          p1: 
+            { 
+              css: false,
+              name: 'Kyo',
+              attack: false,
+              hurt: true,
+              energy: danoP1,
+              special: this.state.p1.special
+            },
           p2: 
-          { name: 'Terry',
-            attack: true,
-            energy: this.state.p2.energy, 
-            special: this.state.p2.special + (damage * 3)
-          }
+            { name: 'Terry',
+              attack: true,
+              hurt: false,
+              energy: this.state.p2.energy, 
+              special: this.state.p2.special + (damage * 3)
+            }
         }
       )
+      //FIM CALCULA Special 
        
+
+
       //faz o flip de imagem de ataque p2
       setTimeout(() => { 
         this.setState(
@@ -131,8 +145,9 @@ export default class App extends Component {
               css: false,
               name: 'Kyo',
               attack: false,
-              energy: this.state.p2.energy, 
-              special: this.state.p2.special + (damage * 3)
+              hurt: false,
+              energy: this.state.p1.energy, 
+              special: this.state.p1.special
             },
             p2: 
             { 
@@ -147,6 +162,8 @@ export default class App extends Component {
           }
         )
       }, 650);
+
+      //FIM DO FLIP ATAQUE P2
     }
   }
 
@@ -180,8 +197,8 @@ export default class App extends Component {
         </section>
         
         <section className={vai}>
-          <Person1 info={this.state.p1} />
-          <Person2 info={this.state.p2} />
+          <Person1 info={this.state} />
+          <Person2 info={this.state} />
         </section>
         
         <section className="scontrols">

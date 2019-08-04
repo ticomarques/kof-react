@@ -7,15 +7,17 @@ import p1Hurt from '../images/Kyo-hit.gif'
 
 export default function Person(props) {
 
-  const attack = props.info.attack;
-  const hurt = props.info.hurt;
+    console.log(props);
+
+  const attack = props.info.p1.attack;
+  const hurt = props.info.p2.attack;
   let vai;
 
   if (!attack && !hurt) {
     vai = <img src={p1} alt="Player 1" className="p1_normal" />;
   } else if (attack){
     vai = <img src={p1Attack} alt="Player 1" className="p1_normal-attack" />;
-  } else {
+  } else if (hurt){
     vai = <img src={p1Hurt} alt="Player 1" />;
   }
 

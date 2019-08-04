@@ -6,8 +6,8 @@ import p2Hurt from '../images/Terry-hurt.gif'
 
 export default function Person(props) {
 
-  const attack = props.info.attack;
-  const hurt = props.info.hurt;
+  const attack = props.info.p2.attack;
+  const hurt = props.info.p2.hurt;
   let vai;
 
   if (!attack && !hurt) {
