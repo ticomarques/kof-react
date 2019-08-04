@@ -58,7 +58,7 @@ export default class App extends Component {
               name: 'Kyo',
               attack: true,
               hurt: false,
-              energy: this.state.p2.energy,
+              energy: this.state.p1.energy,
               special: this.state.p1.special + (damage * 3)
             },
             p2: 
