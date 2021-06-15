@@ -8,13 +8,11 @@ export default function Controls(props) {
             <WrapperControl1>
                 <button onClick={props.handleAttack}>Attack</button>
                 <button onClick={props.handleSpecial}>Special</button>
-                <button onClick={props.handleGiveUp}>Give up</button>
             </WrapperControl1>
             : 
             <WrapperControl2>
                 <button onClick={props.handleAttack}>Attack</button>
                 <button onClick={props.handleSpecial}>Special</button>
-                <button onClick={props.handleGiveUp}>Give up</button>
             </WrapperControl2>
         }
     </div>
