@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import bg from './images/brazil.jpg'
 
-import BarP1 from './components/BarP1'
-import BarP2 from './components/BarP2'
+import BarP1 from './Components/BarP1'
+import BarP2 from './Components/BarP2'
 
-import Person1 from './components/Person1'
-import Person2 from './components/Person2'
-import Controls from './components/Controls'
+import Person1 from './Components/Person1'
+import Person2 from './Components/Person2'
+import Controls from './Components/Controls'
+
+import hitSound from './sound/hit.mp3';
+
+const sound = new Audio(hitSound);
 
 export default class App extends Component {
 
@@ -31,6 +35,12 @@ export default class App extends Component {
           special: 0
       }
   }
+
+  
+
+  hit = () => {
+    sound.play();
+  };
 
   handleAttack = () => {
     
@@ -64,6 +74,8 @@ export default class App extends Component {
             }
           }
         )
+
+        this.hit();
         // ****** FIM Calcula o dano no P2 e adiciona o special
 
         // 3 faz o flip de imagem de ataque p1
@@ -123,6 +135,7 @@ export default class App extends Component {
             }
         }
       )
+      this.hit();
       //FIM CALCULA Special 
        
 
