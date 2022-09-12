@@ -7,8 +7,6 @@ import p1Hurt from '../images/Kyo-hit.gif'
 
 export default function Person(props) {
 
-    console.log(props);
-
   const attack = props.info.p1.attack;
   const hurt = props.info.p2.attack;
   let vai;
