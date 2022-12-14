@@ -7,7 +7,196 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Removed from APP */
+.stage {
+  background: url('images/brazil.jpg') no-repeat top center; 
+  height:466px;
+}
+.topBar{
+  height:100px;
+  padding:15px 10px 0;
+}
+.arena{
+  height: 350px;
+  display:flex;
+  justify-content:space-between;
+}
+.p1Attack {
+  justify-content: flex-end;
+}
+.p2Attack {
+  justify-content: flex-start;
+}
+
+@keyframes example {
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+/* Removed from  BarP1 */
+.wrapperBarP1{
+  float:left;
+}
+
+.energyBarP1 {
+    width:200px;
+    height:20px;
+    background: green;
+    color: white;
+}
+.WrapperEnergyBarP1 {
+    width:200px;
+    height:20px;
+    padding: 1px;
+    border:1px solid white;
+}
+.WrapperSpecialBarP1 {
+    width:100px;
+    height:20px;
+    padding: 2px;
+    border:1px solid white;
+    margin: 4px 0;
+}
+.specialBarP1 {
+    width:100px;
+    height:15px;
+    margin-top: 5px;
+    background: green;
+    color: white;
+}
+
+/* Removed from  BarP2 */
+.wrapperBarP2{
+  float:right;
+}
+
+.energyBarP2 {
+    width:200px;
+    height:20px;
+    background: green;
+    color: white;
+    float:right;
+    text-align:right;
+}
+.WrapperEnergyBarP2 {
+    width:200px;
+    height:20px;
+    padding: 1px;
+    border:1px solid white;
+}
+.WrapperSpecialBarP2 {
+    width:100px;
+    height:20px;
+    padding: 2px;
+    border:1px solid white;
+    margin: 4px 0;
+    float:right;
+}
+.specialBarP2 {
+    width:100px;
+    height:15px;
+    margin-top: 5px;
+    background: green;
+    color: white;
+    text-align:right;
+}
+
+/* Controls */
+.wrapperControl1 {
+  width:185px;
+  height:20px;
+  padding: 10px 5px;
+  background: #f6f6f6;
+  border: 1px solid #e5e5e5;
+  float:left;
+  clear:both;
+}
+
+.wrapperControl2 {
+  width:185px;
+  height:20px;
+  padding: 10px 5px;
+  background: #f6f6f6;
+  border: 1px solid #e5e5e5;
+  float:right;
+  clear:both;
+}
+
+/* Wrapper Person 1*/
+
+.wrapperPerson1 {
+  float:left;
+}
+.energyBarP1 {
+    width:200px;
+    height:20px;
+    background: green;
+    color: white;
+}
+.WrapperEnergyBarP1 {
+    width:200px;
+    height:20px;
+    padding: 2px;
+    border:1px solid white;
+}
+.WrapperSpecialBarP1 {
+    width:100px;
+    height:20px;
+    padding: 2px;
+    border:1px solid white;
+    margin: 4px 0;
+}
+.specialBarP1 {
+    width:100px;
+    height:15px;
+    margin-top: 5px;
+    background: green;
+    color: white;
+}
+.x {
+    float: right;
+}
+.bottom{
+    align-self: flex-end;
+}
+.p1_normal {
+    margin-top:90px;
+}
+.p1_normal-attack{
+    margin-top:56px;
+}
+
+/* Wrapper Person 2 */
+.wrapperPerson2 {
+  float:right;
+  margin-top:90px;
+}
+.energyBarP2 {
+    width:200px;
+    height:20px;
+    background: green;
+    color: white;
+    float:right;
+    text-align:right;
+}
+.WrapperEnergyBarP2 {
+    width:200px;
+    height:20px;
+    padding: 2px;
+    border:1px solid white;
+}
+.WrapperSpecialBarP2 {
+    width:100px;
+    height:20px;
+    padding: 2px;
+    border:1px solid white;
+    margin: 4px 0;
+    float:right;
+}
+.specialBarP2 {
+    width:100px;
+    height:15px;
+    margin-top: 5px;
+    background: green;
+    color: white;
+    text-align:right;
 }

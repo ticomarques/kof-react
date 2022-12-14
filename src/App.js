@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-import bg from './images/brazil.jpg'
 
-import BarP1 from './Components/BarP1'
-import BarP2 from './Components/BarP2'
+import BarP1 from './components/BarP1';
+import BarP2 from './components/BarP2';
 
-import Person1 from './Components/Person1'
-import Person2 from './Components/Person2'
-import Controls from './Components/Controls'
+import Person1 from './components/Person1'
+import Person2 from './components/Person2'
+import Controls from './components/Controls'
 
 import hitSound from './sound/hit.mp3';
 
@@ -195,7 +193,7 @@ export default class App extends Component {
     }
 
     return (
-      <WrapperApp>
+      <div className="stage">
         <section className="topBar">
           <BarP1 info={this.state.p1} />
           <BarP2 info={this.state.p2} />
@@ -223,32 +221,7 @@ export default class App extends Component {
               />
           }
         </section>
-      </WrapperApp>
+      </div>
     )
   }
 }
-
-const WrapperApp = styled.div`
-  background: url(${bg}) no-repeat top center; 
-  height:466px;
-
-  .topBar{
-    height:100px;
-    padding:15px 10px 0;
-  }
-  .arena{
-    height: 350px;
-    display:flex;
-    justify-content:space-between;
-  }
-  .p1Attack {
-    justify-content: flex-end;
-  }
-  .p2Attack {
-    justify-content: flex-start;
-  }
-
-  @keyframes example {
-  100% {background-color:red; left:0px; top:0px;}
-}
-`
